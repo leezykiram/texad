@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+
+{% block main %}
+<div class="container">
+	<div>
+		<br />
+		<h2>Jets Traceroute</h2>
+		<p>This table contains the list of POINTs of various jets at a specific datetime.</p>
+	</div>
+	<table id="table" class="table-bordered table-hover" data-classes="table-striped" data-toggle="table"
+		data-maintain-selected="false" data-sort-order="asc" data-show-filter="true" data-toolbar="#filter-bar"
+		data-id-field="tracking_id" data-height="300" data-show-header="true" data-icons-prefix="glyphicon"
+		data-cache="true">
+
+		<thead class="thead-dark" class="text-center">
+			<th data-field="sno" class="col-xs-1">no</th>
+			<th data-field="product_id" class="col-xs-2">product_id</th>
+			<th data-field="product_description" class="col-xs-3">description</th>
+			<th data-field="latitude" class="col-xs-2">lat</th>
+			<th data-field="longitude" class="col-xs-2">long</th>
+			<th data-field="elevation" class="col-xs-1">elevation</th>
+			<th data-field="track_datetime" class="col-xs-2">datetime</th>
+		</thead>
+		<tbody>
+			{% for dict_item in data %}
+			<tr>
+				<td class="text-center"> {{forloop.counter}}</td>
+				{% for k,v in dict_item.product.items %}
+				<td class="text-center">{{v}}</td>
+				{% endfor %}
+				<td class="text-center">{{dict_item.latitude}}</td>
+				<td class="text-center">{{dict_item.longitude}}</td>
+				<td class="text-center">{{dict_item.elevation}}</td>
+				<td class="text-center">{{dict_item.track_datetime}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

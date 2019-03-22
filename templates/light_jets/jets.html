@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+
+{% block main %}
+<div class="container">
+    <div>
+        <br />
+        <h2>List of Jets</h2>
+        <p>This table contains the list of Light Jets</p>
+    </div>
+    <table id="table" class="table-bordered table-hover" data-classes="table-striped" data-toggle="table"
+        data-maintain-selected="false" data-sort-order="asc" data-show-filter="true" data-toolbar="#filter-bar"
+        data-id-field="product_id" data-height="300" data-show-header="true" data-icons-prefix="glyphicon"
+        data-cache="true">
+
+        <thead class="thead-dark" class="text-center">
+            <th data-field="sno" class="col-xs-1">no</th>
+            <th data-field="product_id" class="col-xs-2">product_id</th>
+            <th data-field="product_description" class="col-xs-3">description</th>
+        </thead>
+        <tbody>
+            {% for dict_item in data %}
+            <tr>
+                <td class="text-center"> {{forloop.counter}}</td>
+                <td class="text-center">{{dict_item.product_id}}</td>
+                <td class="text-center">{{dict_item.description}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
